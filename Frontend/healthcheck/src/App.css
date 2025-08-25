@@ -40,3 +40,134 @@
 .read-the-docs {
   color: #888;
 }
+/* avoid Bootstrap clash */
+.dashboard-container {
+  padding: 16px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+/* Ticker */
+.tickerContainer {
+  background: #fff7cc;
+  border: 1px solid #ffe58f;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.tickerText {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  animation: ticker 18s linear infinite;
+}
+.alerting { width: 18px; height: 18px; }
+@keyframes ticker { 0% {transform: translateX(100%);} 100% {transform: translateX(-100%);} }
+
+/* Top metrics grid */
+.chart-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 16px;
+}
+.download {
+  position: absolute;
+  top: -40px;
+  right: 8px;
+}
+.download img { width: 28px; cursor: pointer; }
+
+.box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.box h2 { font-size: 16px; margin: 0 0 6px; color: #333; }
+.box p { font-size: 22px; font-weight: 700; margin: 0; color: #555; }
+.box.success h2, .box.success p { color: #1f9d55; }   /* green */
+.box.failure h2, .box.failure p { color: #d93025; }   /* red */
+
+/* Bar chart spans full width of metrics grid row */
+.card-span {
+  grid-column: 1 / -1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Lower area: two columns (pie left, attention right), then recent failures full width */
+.lower-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr;
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+/* Card look for pie/attention/recent */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.badge-critical {
+  font-size: 12px; padding: 2px 8px; border-radius: 999px;
+  background: #ffe6e6; color: #c62828; border: 1px solid #ffcdd2;
+}
+
+/* Attention Needed: scroll under the header */
+.attention-needed {
+  max-height: 420px; /* adjust as you like */
+  overflow-y: auto;
+  border-left: 4px solid #ffc107;
+}
+.issue-list { margin: 0; padding-left: 18px; }
+.issue-list li { margin: 6px 0; }
+
+/* Recent Failures spans both columns below */
+.recent-failures {
+  grid-column: 1 / -1;
+  border-left: 4px solid #d93025;
+}
+.failures-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+}
+.failures-row:last-child { border-bottom: none; }
+.pill {
+  display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+  background: #eef1f7; color: #333; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.pill-api   { background: #e6f4ff; color: #1266f1; }
+.pill-job   { background: #fff4e6; color: #b25a00; }
+.pill-queue { background: #eaf7e9; color: #1b7f3b; }
+.ts { font-size: 12px; color: #666; }
+.view-all {
+  background: #f4f6ff; border: 1px solid #e0e7ff; color: #3f51b5;
+  border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer;
+}
+
+/* Pie & Bar chart containers (optional style) */
+.piechart, .barchart { background: #fff; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.piechart { padding: 16px; }
+.barchart { padding: 16px; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .lower-grid { grid-template-columns: 1fr; }
+  .attention-needed { max-height: none; }
+}
